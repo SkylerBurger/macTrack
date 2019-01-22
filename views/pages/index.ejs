@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html class="homepage"lang="en">
+<head>
+  <%- include('../partials/head.ejs') %>
+  <title>MacTrack</title>
+</head>
+<body>
+
+  <div class="home">
+  <h1 class="indexH1">MacTrack</h1>
+  <h3 class="indexH3">The Simple Macronutrient Tracker</h3>
+
+
+  <button><a href="register">Register</a></button>
+
+ 
+  <form action="/sign_in" method="POST">
+   
+    <input type="text" name="user" placeholder="Enter Name" required>
+    <button type="submit">Sign In</button>
+
+  </form>
+</div>
+  <div class="p">
+  <p>Ready to start dieting?  We have your back with MacTrack. You can track your macro-nutrients with MacTrack - an on-the-go tool for any busy lifestyle.  Choose from over 600,000 tracked foods, local restaurants and various exercise activities to help you keep on track with your health goals. Register to create an account or sign in if you already have one!</p>
+  </div>
+  <!-- <div class="footer"> -->
+  <%- include('../partials/footer.ejs') %>
+  <!-- </div> -->
+  
+</body>
+</html>

@@ -1,0 +1,80 @@
+
+#dash-body {
+    background-color:rgb(240, 243, 237);
+    font-family: 'Mukta', sans-serif;
+    background: transparent;
+    border: 25px solid transparent;
+    border-image: url("/images/sunset.png") 500 stretch;
+}
+
+#dash-date {
+    color: black;
+    font-size:56px;
+    font-family:arial;
+    border-width: 50px;
+    border-style: solid;
+    width: 55%;
+    margin-left: -3%;
+    border-image-source: url("/image/Leaf.png")
+}
+ 
+#dash-page {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-column-gap: 0%;
+    grid-template-rows: auto auto auto auto;
+    grid-row-gap: 0%;
+}
+
+#dash-table tr {
+    background-color: rgb(232, 65, 16);
+    color: aliceblue;
+    width: 10%;
+    height: 50%;
+    padding: 1px;
+    border: 1px solid black;
+}
+
+#chartSize {
+    background-color: lightcyan;
+    width: 40%;
+    position:fixed; top:4%; right:0%; 
+  
+}
+
+#myChart {
+    color: white;
+   
+}
+
+table {
+    border-collapse: collapse; 
+    border: 1pt solid black;
+
+}
+
+table tr {
+    height: 120%;
+}
+
+table td {
+    padding: 0%;
+}
+
+.button {
+    border-radius: 10%;
+    background-color: rgb(155, 61, 61);
+    color: whitesmoke;
+    float: left;
+    font-family: 'Aleo', sans-serif;
+}
+
+.dash-image {
+    max-width: 200px;
+}
+
+.addDash {
+    margin-left: 60px;
+}
+
+
