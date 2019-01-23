@@ -8,8 +8,20 @@
   <title>MacTrack</title>
 </head>
 <body>
+  <header>
+    <nav>
+      <h1>MacTrack</h1>
+      <ul>
+        <li><a href="/dash/<%= user_id %>"><button>Dashboard</button></a></li>
+        <li><a href="/add/<%= user_id %>/food"><button>Add Food</button></a></li>
+        <li><a href="/add/<%= user_id %>/exercise"><button>Add Exercise</button></a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <p>This application was created for entertainment and educational purposes only. The macro-nutrient calculator is loosely based on Mifflin St. Jeor's Resting Metabloic Rate(RMR) equation or Basil Metabolic Rate(BMR). As always, please consult a physician before beginning any diet or exercise program. The creators of this application will not be held responsible for any results achieved through this calculator.</p>
+  <main>
+    <p>This application was created for entertainment and educational purposes only. The macro-nutrient calculator is loosely based on Mifflin St. Jeor's Resting Metabloic Rate(RMR) equation or Basil Metabolic Rate(BMR). As always, please consult a physician before beginning any diet or exercise program. The creators of this application will not be held responsible for any results achieved through this calculator.</p>
+  </main>
   
   <%- include('../partials/footer.ejs') %>
 </body>

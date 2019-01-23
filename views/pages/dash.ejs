@@ -4,12 +4,11 @@
 <head>
   <%- include('../partials/head.ejs') %>
   <title>Dashboard</title>
-  <link href="https://fonts.googleapis.com/css?family=Aleo|Mukta|Playfair+Display" rel="stylesheet">
 </head>
 
 <body>
   
-  <header class="page-links">
+  <header>
     <nav>
       <h1>MacTrack</h1>
       <ul>
@@ -130,7 +129,7 @@
           <p><%= food.calories %> calories</p>
         </div>
         <div>
-          <form action="/delete/<%= user_id %>/<%= food.id %>/food_entry">
+          <form action="/delete/<%= user_id %>/<%= food.id %>/food_entry" method="POST">
             <input type="hidden" name="_method" value="DELETE">
             <button class="delete">X</button>
           </form>
@@ -171,6 +170,7 @@
 </body>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
 
   <script>
     let $delete = $('.delete');
