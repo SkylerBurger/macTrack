@@ -9,16 +9,11 @@ const app = express();
 const superagent = require('superagent');
 const pg = require('pg');
 const methodOverride = require('method-override');
-
+require('dotenv').config();
 app.set('view engine', 'ejs');
 
+
 const PORT = process.env.PORT || 3000;
-
-//===========================
-// Load Environment Variables
-//===========================
-
-require('dotenv').config();
 
 //===========================
 // Middleware
@@ -41,21 +36,32 @@ app.use(methodOverride((req, res) => {
 const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
 
-client.on('error', err => console.log('||||||||||||||||||||||||client error|||||||||||||||||||||||', err));
+client.on('error', err => console.log(err));
 
 //===========================
 // Routes
 //===========================
 
-/////////index.ejs///////////
 app.get('/', renderHome);
+app.post('/sign_in', signIn);
+app.get('/register', renderRegister);
+app.post('/register', saveRegistration);
+app.get('/dash/:id', renderDash);
+app.get('/add/:id/:type', renderAdd);
+app.get('/disclaimer',renderDisclaimer);
+app.get('/about',renderAbout);
+app.post('/search', search);
+app.post('/custom', custom);
+app.post('/save', save);
+app.delete('/delete/:user_id/:entry_id/:table', deleteEntry);
+
+//===========================
+// Functions
+//===========================
 
 function renderHome(req, res){
   res.render('pages/index.ejs')
 }
-
-/////////sign_in////////////
-app.post('/sign_in', signIn);
 
 function signIn (req, res){
   let sql = 'SELECT id FROM users WHERE name=$1';
@@ -72,10 +78,6 @@ function signIn (req, res){
   })
   .catch(err => console.log('||||||||||||||||||||||||sign-in error|||||||||||||||||||||||', err));
 }
-
-///////////register/////////////
-app.get('/register', renderRegister);
-app.post('/register', saveRegistration);
 
 function renderRegister (req, res){
   res.render('pages/register.ejs');
@@ -101,13 +103,6 @@ function saveRegistration (req, res){
     .catch(err => res.render('/pages/error.ejs'));
 }
 
-/////////dash.ejs///////////
-app.get('/dash/:id', renderDash);
-
-/////////add.ejs///////////
-app.get('/add/:id/:type', renderAdd);
-
-
 function renderAdd(req, res){
   let type = req.params.type;
   let id = req.params.id;
@@ -129,25 +124,13 @@ function renderAdd(req, res){
     .catch(err => console.log('||||||||||||||||||||||||renderAdd error|||||||||||||||||||||||', err));
 }
 
-////////////Disclaimer////////
-app.get('/disclaimer',renderDisclaimer);
-
 function renderDisclaimer(req, res){
   res.render('pages/disclaimer.ejs');
 }
 
-///////////ABOUT PAGE////////////////
-app.get('/about',renderAbout);
-
 function renderAbout(req, res){
   res.render('pages/about.ejs');
 }
-
-//===========================
-// Search
-//===========================
-
-app.post('/search', search);
 
 function search(req, res){
   let data = req.body;
@@ -238,11 +221,6 @@ function exerciseSearch(url, id, query, res){
     })
     .catch(err => res.send('Invalid input :('));
 }
-  
-  
-//===========================
-// Dashboard Function
-//===========================
 
 function renderDash (req, res) {
   var dateStr = new Date().toDateString();
@@ -272,22 +250,10 @@ function renderDash (req, res) {
     });
 }
 
-//===========================
-// Customize
-//===========================
-
-app.post('/custom', custom);
-
 function custom(req, res) {
   let selectionData = req.body;
   res.render('pages/customize.ejs', {data: selectionData});
 }
-
-//===========================
-// Save Function
-//===========================
-
-app.post('/save', save)
 
 function save (req, res) {
   let dateStr = new Date().toDateString();
@@ -319,12 +285,6 @@ function save (req, res) {
       .catch(err => console.log(err));
   }      
 }
-
-//===========================
-// Delete Function
-//===========================
-
-app.delete('/delete/:user_id/:entry_id/:table', deleteEntry);
 
 function deleteEntry(req, res){
   let SQL = `DELETE from ${req.params.table} WHERE id = '${req.params.entry_id}'`;
