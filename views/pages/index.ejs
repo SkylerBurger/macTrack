@@ -1,32 +1,48 @@
 <!DOCTYPE html>
-<html class="homepage"lang="en">
-<head>
-  <%- include('../partials/head.ejs') %>
-  <title>MacTrack</title>
-</head>
-<body>
 
-  <div class="home">
-  <h1 class="indexH1">MacTrack</h1>
-  <h3 class="indexH3">The Simple Macronutrient Tracker</h3>
+<html>
+  <head>
+    <%- include('../partials/head.ejs') %>
+    <title>MacTrack</title>
+  </head>
 
+  <body id="main-page">
+    <header class="page-links">
+      <nav>
+        <h1>MacTrack</h1>
+        <h2>The Simple Macronutrient Tracker</h2>
+      </nav>
+    </header>
 
-  <button><a href="register">Register</a></button>
+    <main>
+    
+        <div id="intro">
+          <p>Ready to start dieting?  We have your back with MacTrack. You can track your macro-nutrients with MacTrack - an on-the-go tool for any busy lifestyle.  Choose from over 600,000 tracked foods, local restaurants and various exercise activities to help you keep on track with your health goals. Register to create an account or sign in if you already have one!</p>
+        </div>
 
- 
-  <form action="/sign_in" method="POST">
-   
-    <input type="text" name="user" placeholder="Enter Name" required>
-    <button type="submit">Sign In</button>
+        <form action="/sign_in" method="POST" id="sign-in-form">
+          <input type="text" name="user" placeholder="Enter Name" required>
+          <button type="submit">Sign In</button>
+        </form>
+        <button id="sign-in">Sign In</button>
 
-  </form>
-</div>
-  <div class="p">
-  <p>Ready to start dieting?  We have your back with MacTrack. You can track your macro-nutrients with MacTrack - an on-the-go tool for any busy lifestyle.  Choose from over 600,000 tracked foods, local restaurants and various exercise activities to help you keep on track with your health goals. Register to create an account or sign in if you already have one!</p>
-  </div>
-  <!-- <div class="footer"> -->
-  <%- include('../partials/footer.ejs') %>
-  <!-- </div> -->
-  
-</body>
+        <!-- Have the registration form reveal upon button press -->
+        <form action="/register" method="POST">
+          <input type="hidden" name="_method" value="GET">
+          <button type="submit">Register</button>
+        </form>
+
+        <%- include('../partials/footer.ejs') %>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+      let $form = $('#sign-in-form');
+      $form.hide();
+      $('#sign-in').on('click', function(){
+        $form.show();
+        $('#sign-in').hide();
+      });
+    </script>
+  </body>
 </html>
