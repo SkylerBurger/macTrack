@@ -2,10 +2,6 @@
 /* Results */
 /* ======= */
 
-.results-page {
-  background-color: rgb(240, 243, 237);
-}
-
 .all-results{
   display: flex;
   flex-direction: row;
@@ -24,91 +20,29 @@
   border-radius: 3px;
   text-align: center;
   margin: 15px;
-  font-family: sans-serif;
 }
 
-.single-result h2 {
-  margin: 10px 0 10px 0;
-  font-size: 45px;
-  color: rgb(232, 65, 16);
-  text-shadow: 1px 2px 2px rgb(144, 144, 148);
-}
+/* ====== */
+/* Header */
+/* ====== */
 
-.single-result img {
-  margin: 10px 0 10px 0;
-  width: 300px;
-  background-color: rgb(240, 243, 237);
-  box-shadow: 2px 4px 4px rgb(99, 99, 100);
-}
-
-.single-result p {
-  margin: 0 0 6px 0;
-}
-
-.single-result button {
-  margin: 10px 0 10px 0;
-  height: 30px;
-  width: 150px;
-  font-size: 18px;
-  background-color: rgb(18, 210, 133);
-  border: none;
-  border-radius: 5px;
-  box-shadow: 1px 2px 2px rgb(99, 99, 100);
-}
-
-.single-result button:hover {
-  background-color: rgb(95, 245, 185);
-  position: relative;
-  top: -2px;
-}
-
-.single-result button:active {
-  background-color: rgb(16, 168, 107);
-  position: relative;
-  top: 3px;
-}
-
-button.add-button {
-  margin: 10px 0 10px 0;
-  height: 60px;
-  width: 150px;
-  font-size: 18px;
-  background-color: rgb(18, 210, 133);
-  border: none;
-  border-radius: 5px;
-  box-shadow: 1px 2px 2px rgb(99, 99, 100);
-}
-
-button.add-button:hover {
-  background-color: rgb(95, 245, 185);
-  position: relative;
-  top: -2px;
-}
-
-button.add-button:active {
-  background-color: rgb(16, 168, 107);
-  position: relative;
-  top: 3px;
-}
-
-/* ======= */
-/* Headers */
-/* ======= */
-
-header.page-links {
-  min-height: 80px;
+header {
+  position: fixed;
+  height: 140px;
   width: 100%;
   background-color: rgb(99, 99, 100);
   border: 1px solid black;
   box-shadow: 1px 0 8px black;
+  box-sizing: border-box;
 }
-header.page-links nav {
+
+header nav {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
-header.page-links nav h1 {
+header nav h1 {
   font-family: 'Roboto', sans-serif;
   font-size: 45px;
   font-weight: bold;
@@ -118,14 +52,14 @@ header.page-links nav h1 {
   margin: 20px 0 0 40px;
 }
 
-header.page-links nav ul {
+header nav ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
   margin: 20px 0 20px 15px;
 }
 
-header.page-links nav ul li button {
+header nav ul li button {
   height: 30px;
   width: 150px;
   font-family: 'Roboto', sans-serif;
@@ -137,45 +71,51 @@ header.page-links nav ul li button {
   margin: 0 15px 0 0;
 }
 
-header.page-links nav ul li button:hover {
+header nav ul li button:hover {
   background-color: rgb(248, 149, 82);
   position: relative;
   top: -2px;
 }
 
-header.page-links nav ul li button:active {
+header nav ul li button:active {
   background-color: rgb(194, 57, 16);
   position: relative;
   top: 3px;
 }
 
-header.page-links nav ul li button a {
+header nav ul li button a {
   text-decoration: none;
 }
 
-/* ======= */
-/* Headers */
-/* ======= */
+/* ====== */
+/* Footer */
+/* ====== */
 
-footer.footer-partial {
-  height: 40px;
-  width: 100%;
-  background-color: rgb(99, 99, 100);
-  border: 1px solid black;
-  color: rgb(18, 210, 133);
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
+footer {
   position: fixed;
   bottom: 0;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: rgb(99, 99, 100);
+  border: 1px solid black;
 }
 
-footer.footer-partial p {
+footer div {
+  width: 50%;
+}
+
+footer p {
   margin-top: 5px;
   text-shadow: 2px 4px 4px rgb(66, 66, 66);
 }
 
-footer.footer-partial a {
+footer a {
+  display: block;
+  position: relative;
+  right: 0;
   color: rgb(232, 65, 16);
   text-shadow: 2px 4px 4px rgb(66, 66, 66);
   margin-left: 10px;

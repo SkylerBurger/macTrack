@@ -4,21 +4,20 @@
 // Application Dependencies
 //==========================
 
+const PORT = process.env.PORT || 3000;
 const express = require('express');
 const app = express();
 const superagent = require('superagent');
 const pg = require('pg');
 const methodOverride = require('method-override');
 require('dotenv').config();
-app.set('view engine', 'ejs');
 
-
-const PORT = process.env.PORT || 3000;
 
 //===========================
 // Middleware
 //===========================
 
+app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride((req, res) => {
@@ -88,19 +87,47 @@ function saveRegistration (req, res){
   let userHeight = (parseInt(data.feet) * 12) + parseInt(data.inches);
   
   let newUser = new User(data.name, data.age, data.sex, parseInt(data.weight), userHeight, data.activity_level);
-
+  
   let sql = `INSERT INTO users 
-              (name, sex, age, weight, height, activity_level, protein, fat, carbs, calories) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-              RETURNING id`;
+  (name, sex, age, weight, height, activity_level, protein, fat, carbs, calories) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+  RETURNING id`;
   let values = [
     newUser.name, newUser.sex, newUser.age, newUser.weight, newUser.height, newUser.activity_level, newUser.macronutrients().protein, newUser.macronutrients().fat, newUser.macronutrients().carbs, newUser.tdee()
   ];
-
+  
   return client.query(sql, values)
-    .then(result => {
-      res.redirect(`/dash/${result.rows[0].id}`);
+  .then(result => {
+    res.redirect(`/dash/${result.rows[0].id}`);
+  })
+  .catch(err => res.render('/pages/error.ejs'));
+}
+
+function renderDash (req, res) {
+  var dateStr = new Date().toDateString();
+  let id = parseInt(req.params.id);
+  
+  let sql = `SELECT * FROM food_entry WHERE fk_users = '${id}' AND date = '${dateStr}'`;
+  let foods = [];
+  client.query(sql)
+  .then(data => {
+    foods = [...data.rows];
+  });
+
+  let sql2 = `SELECT protein, fat, carbs, calories FROM users WHERE id = '${id}'`;
+  let targets;
+  client.query(sql2)
+    .then(targetResults => {
+      targets = targetResults.rows[0];
     })
-    .catch(err => res.render('/pages/error.ejs'));
+
+  let sql3 = `SELECT * FROM exercise WHERE fk_users = '${id}' AND date = '${dateStr}'`;
+  return client.query(sql3)
+    .then(result => {
+      res.render('pages/dash', {food_entry: foods, exercise_entry: result.rows, date: dateStr, user_id: id, macro_targets: targets});
+    })
+    .catch(err => {
+      res.render('pages/error', {err});
+    });
 }
 
 function renderAdd(req, res){
@@ -220,34 +247,6 @@ function exerciseSearch(url, id, query, res){
         })
     })
     .catch(err => res.send('Invalid input :('));
-}
-
-function renderDash (req, res) {
-  var dateStr = new Date().toDateString();
-  let id = parseInt(req.params.id);
-  
-  let sql = `SELECT * FROM food_entry WHERE fk_users = '${id}' AND date = '${dateStr}'`;
-  let foods = [];
-  client.query(sql)
-  .then(data => {
-    foods = [...data.rows];
-  });
-
-  let sql2 = `SELECT protein, fat, carbs, calories FROM users WHERE id = '${id}'`;
-  let targets;
-  client.query(sql2)
-    .then(targetResults => {
-      targets = targetResults.rows[0];
-    })
-
-  let sql3 = `SELECT * FROM exercise WHERE fk_users = '${id}' AND date = '${dateStr}'`;
-  return client.query(sql3)
-    .then(result => {
-      res.render('pages/dash', {food_entry: foods, exercise_entry: result.rows, date: dateStr, user_id: id, macro_targets: targets});
-    })
-    .catch(err => {
-      res.render('pages/error', {err});
-    });
 }
 
 function custom(req, res) {

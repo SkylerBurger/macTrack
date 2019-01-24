@@ -5,17 +5,18 @@
   <title>Search Results</title>
 </head>
 <body>
-  <main class="results-page">
-    <header class="page-links">
-      <nav>
-        <h1>MacTrack</h1>
-        <ul>
-          <li><a href="/dash/<%= user_id %>"><button>Dashboard</button></a></li>
-          <li><a href="/add/<%= user_id %>/food"><button>Add Food</button></a></li>
-          <li><a href="/add/<%= user_id %>/exercise"><button>Add Exercise</button></a></li>
-        </ul>
-      </nav>
-    </header>
+  <header>
+    <nav>
+      <h1>MacTrack</h1>
+      <ul>
+        <li><a href="/dash/<%= user_id %>"><button>Dashboard</button></a></li>
+        <li><a href="/add/<%= user_id %>/food"><button>Add Food</button></a></li>
+        <li><a href="/add/<%= user_id %>/exercise"><button>Add Exercise</button></a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
     <section class="all-results">
 
       <% if(search_type === 'food'){ %>

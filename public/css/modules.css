@@ -1,0 +1,102 @@
+/* ======= */
+/* Results */
+/* ======= */
+
+.single-result {
+  font-family: sans-serif;
+}
+
+.single-result h2 {
+  margin: 10px 0 10px 0;
+  font-size: 45px;
+  color: rgb(232, 65, 16);
+  text-shadow: 1px 2px 2px rgb(144, 144, 148);
+}
+
+.single-result img {
+  margin: 10px 0 10px 0;
+  width: 300px;
+  background-color: rgb(240, 243, 237);
+  box-shadow: 2px 4px 4px rgb(99, 99, 100);
+}
+
+.single-result p {
+  margin: 0 0 6px 0;
+}
+
+.single-result button {
+  margin: 10px 0 10px 0;
+  height: 30px;
+  width: 150px;
+  font-size: 18px;
+  background-color: rgb(18, 210, 133);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 2px 2px rgb(99, 99, 100);
+}
+
+.single-result button:hover {
+  background-color: rgb(95, 245, 185);
+  position: relative;
+  top: -2px;
+}
+
+.single-result button:active {
+  background-color: rgb(16, 168, 107);
+  position: relative;
+  top: 3px;
+}
+
+/* ======= */
+/* Results */
+/* ======= */
+
+div.entries {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+div.dash-entry {
+  width: 90%;
+  box-sizing: border-box;
+  margin: 10px auto 0 auto;
+  border: 1px solid black;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+div.dash-entry::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+div.dash-entry img {
+  float: left;
+  width: 100px;
+  margin: 10px 10px 10px 10px;
+}
+
+div.details {
+  float: left;
+}
+
+div.details p {
+  margin-top: 15px;
+}
+
+div.details ul {
+  float: left;
+  margin-bottom: 15px;
+}
+
+div.details li {
+  float: left;
+  margin: 15px 15px 0 0;
+}
+
+button.edit {
+  margin: 10px 5% 0 0;
+  float: right;
+}
