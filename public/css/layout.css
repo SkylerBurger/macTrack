@@ -27,12 +27,15 @@
 /* ====== */
 
 header {
-  min-height: 80px;
+  position: fixed;
+  height: 140px;
   width: 100%;
   background-color: rgb(99, 99, 100);
   border: 1px solid black;
   box-shadow: 1px 0 8px black;
+  box-sizing: border-box;
 }
+
 header nav {
   display: flex;
   justify-content: space-between;
